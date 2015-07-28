@@ -10,7 +10,7 @@ end
 
 post '/' do
   if (params[:url] =~ URI::regexp).nil?
-    @error = "Nah man, please enter a valid url."
+    @error = 'Nah man, please enter a valid URL.'
     erb :index
   else
     @token = (Time.now.to_i + rand(36**8)).to_s 36
@@ -26,17 +26,14 @@ get '/:token/?' do
   else
     redirect url
   end
-
-  erb :index
 end
 
 __END__
 
 @@ layout
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Shawty</title>
   </head>
   <body>
@@ -47,16 +44,13 @@ __END__
 @@ index
 <h1>Shawty</h1>
 <% if @error %>
-  <p><%=@error%></p>
+  <p><%= @error %></p>
 <% end %>
-<form action="/" method="post">
-  <label>Enter a URL: </label>
-  <br />
-  <input type="url" name="url" size="40" placeholder="URL" />
-  <input type="submit" value="Shorten" />
+<form action='/' method='post'>
+  <input type='url' name='url' size='40' placeholder='Enter a URL' />
+  <input type='submit' value='Shorten' />
 </form>
 
 @@ shortened
 <h1>Aw yeah shawty! Here's your link:</h1>
-<p><a href="http://localhost:4567/<%=@token%>">http://localhost:4567/<%=@token%></a>
-
+<p><a href="http://localhost:4567/<%= @token %>">http://localhost:4567/<%= @token %></a></p>
