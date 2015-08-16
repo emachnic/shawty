@@ -1,0 +1,9 @@
+<h1>Shawty</h1>
+<% if @error %>
+  <p><%= @error %></p>
+<% end %>
+<form action='/' method='post'>
+  <input type='url' name='url' size='40' placeholder='Enter a URL' />
+  <input type='submit' value='Shorten' />
+</form>
+
